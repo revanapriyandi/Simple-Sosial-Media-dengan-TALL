@@ -1,5 +1,6 @@
 <div>
-    @if (auth()->check() && auth()->user()->isNot($user))
+    @auth
+    @if ( auth()->user()->isNot($user))
     @if (auth()->user()->following($user))
     <x-button.error wire:click="unfollow">Unfollow</x-button.error>
     @else
@@ -7,7 +8,8 @@
     @endif
     @else
     <a href="/settings"
-        class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">Edit
+        class="inline-flex justify-center px-4 py-2 text-sm font-medium text-black transition duration-150 ease-in-out bg-white border border-transparent rounded-md shadow hover:bg-cool-gray-100 focus:outline-none active:bg-cool-gray-100">Edit
         your profile</a>
     @endif
+    @endauth
 </div>

@@ -13,6 +13,7 @@ class Status extends Model
      * @var array
      */
     protected $fillable = ['hash', 'body'];
+    protected $withCount = ['comments'];
 
     public function user()
     {
@@ -22,5 +23,10 @@ class Status extends Model
     public function getPublishedAttribute()
     {
         return $this->created_at->diffForHumans();
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comments::class);
     }
 }
